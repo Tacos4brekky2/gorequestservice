@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option go_package = "github.com/Tacos4brekky2/gorequestservice/internal/gogrpc";
+
+
+service HTTPRequestsService {
+    rpc RequestHandler (UserRequest) returns (Response);
+}
+
+message UserRequest {
+    string ID = 1;
+    string RequestURL = 2;
+    string Host = 3;
+    string Endpoint = 4;
+    map<string, string> GetParams = 5;
+    map<string, string> PostJSON = 6;
+    map<string, string> Header = 7;
+}
+
+message Response {
+    string ID = 1;
+    map<string, string> Payload = 2;
+}
+
+message Payload {
+    Meta Meta = 1;
+    map<string, string> Data = 2;
+}
+
+message Meta {
+    string URL = 1;
+    string Timestamp = 2;
+}
